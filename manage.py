@@ -7,6 +7,11 @@ parser.add_argument('--print', default=None)
 args = parser.parse_args()
 
 if args.print is not None:
-    main(args.print)
+    arg = args.print
+    try:
+        arg = int(arg)
+    except:
+        pass
+    main(arg)
 else:
     print('Try printing something to the console using --print "something"')
