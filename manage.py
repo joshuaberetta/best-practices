@@ -8,3 +8,5 @@ args = parser.parse_args()
 
 if args.print is not None:
     main(args.print)
+else:
+    print('Try printing something to the console using --print "something"')
