@@ -7,7 +7,7 @@ from typing import List, Any
 def printing(print_val:str) -> None:
 
     if isinstance(print_val, str):
-        print(print_val, type(print_val))
+        print(print_val)
     else:
         raise Exception('str type not used')
 

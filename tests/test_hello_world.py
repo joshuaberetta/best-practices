@@ -1,5 +1,5 @@
 import app.hello_world
-from app.hello_world import printing
+from app.hello_world import printing, sum_nums
 import unittest
 
 class TestPrinting(unittest.TestCase):
@@ -15,4 +15,25 @@ class TestPrinting(unittest.TestCase):
             printing(12345)
         except Exception as err:
             print('Exception: ', err)
+
+
+class TestSumNums(unittest.TestCase):
+
+    def test_summing_ints(self):
+        self.assertEqual(6.0, sum_nums([1,2,3]))
+
+    def test_summing_floats(self):
+        self.assertEqual(6.0, sum_nums([1.,2.,3.]))
+
+    def test_summing_ints_and_floats(self):
+        self.assertEqual(6.0, sum_nums([1.,2,3]))
+
+    def test_summing_strings(self):
+        try:
+            sum_nums([1,2,3])
+        except Exception as err:
+            print('Exception: ', err)
+
+
+
 
