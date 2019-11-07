@@ -7,8 +7,20 @@ log = logging.getLogger(__name__)
 
 def printing(print_val:str) -> None:
 
+    '''Printing out an inputted string to the console
+
+    Args:
+        print_val (str): The imput string to be printed out
+
+    Rasises:
+        ValueError: Int or float entered instead of string
+
+    Returns:
+        None: Printing of imput string to the console
+    '''
+
     try:
-        print_val = int(print_val)
+        print_val = float(print_val)
     except:
         pass
 
@@ -23,6 +35,18 @@ def printing(print_val:str) -> None:
 
 
 def sum_nums(list_of_nums:List[Any]) -> float:
+
+    '''Take the sum of a list of numbers
+
+    Args:
+        list_of_nums (List[Any]): List of items to be summed, float and/or int
+    
+    Raises:
+        ValueError: Entered non-numeric values in list
+
+    Returns:
+        sum (float): Sum of all numeric items in list
+    '''
 
     sum:float = 0.0
     for item in list_of_nums:
@@ -45,13 +69,26 @@ def sum_nums(list_of_nums:List[Any]) -> float:
 
 def split_items(item:Any, split_on:str=' ') -> List[Any]:
     
+    '''Split a string of inputted text on a specified delimeter
+
+    Args:
+        item (str): String of words or items to be split
+        split_on (str): Delimeter to split the input text on
+
+    Raises:
+        LookupError: Delimeter not found in input string of text
+
+    Returns:
+        result (List[Any]): List of split items that were seperated by delimeter
+    '''
+
     result:list = []
     idxs:list = []
 
     if split_on not in str(item) or len(split_on) == 0:
         e = 'Search item not found'
         log.exception(e)
-        raise Exception(e)
+        raise LookupError(e)
     
     for i, val in enumerate(str(item)):
         if val == split_on:
