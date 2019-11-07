@@ -67,13 +67,13 @@ def sum_nums(list_of_nums:List[Any]) -> float:
     return sum
 
 
-def split_items(item:Any, split_on:str=' ') -> List[Any]:
+def split_items(item:Any, delimeter:str=' ') -> List[Any]:
     
     '''Split a string of inputted text on a specified delimeter
 
     Args:
         item (str): String of words or items to be split
-        split_on (str): Delimeter to split the input text on
+        delimeter (str): Delimeter to split the input text on
 
     Raises:
         LookupError: Delimeter not found in input string of text
@@ -85,13 +85,13 @@ def split_items(item:Any, split_on:str=' ') -> List[Any]:
     result:list = []
     idxs:list = []
 
-    if split_on not in str(item) or len(split_on) == 0:
+    if delimeter not in str(item) or len(delimeter) == 0:
         e = 'Search item not found'
         log.exception(e)
         raise LookupError(e)
     
     for i, val in enumerate(str(item)):
-        if val == split_on:
+        if val == delimeter:
             idxs.append(i)
 
     start_idx:int = 0
@@ -101,6 +101,21 @@ def split_items(item:Any, split_on:str=' ') -> List[Any]:
     else:
         result.append(item[idxs[-1] + 1:])
 
-    log.debug(f'func: {inspect.stack()[0][3]}(), item: {item}, split: {split_on}, idxs: {idxs}, result: {result}')
+    log.debug(f'func: {inspect.stack()[0][3]}(), item: {item}, split: {delimeter}, idxs: {idxs}, result: {result}')
 
+    return result
+
+
+def join_items(items:List[Any], delimeter:str=' ') -> str:
+    
+    if not isinstance(delimeter, str):
+        raise ValueError('enter a valid string as delimeter')
+
+    result:str = ''
+    for i, item in enumerate(items):
+        if i < (len(items) - 1):
+            result += str(item) + delimeter
+        else:
+            result += str(item)
+    
     return result
