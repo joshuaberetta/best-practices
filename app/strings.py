@@ -21,8 +21,17 @@ class L():
     def __init__(self, items:List[Any]):
         self.items = items
 
+    # def __repr__(self):
+    #     return f'{self.items}'
+
     def __repr__(self):
-        return f'{self.items}'
+        fmt = ''
+        for i, item in enumerate(self.items):
+            if i < (len(self.items) - 1):
+                fmt += f'{item}, '
+            else:
+                fmt += f'{item}'
+        return f'<<{fmt}>>'
 
     def __len__(self):
         return len(self.items)
