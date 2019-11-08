@@ -18,11 +18,8 @@ class String():
 
 class L():
 
-    def __init__(self, items:List[Any]):
+    def __init__(self, items:List[Any]=[]):
         self.items = items
-
-    # def __repr__(self):
-    #     return f'{self.items}'
 
     def __repr__(self):
         fmt = ''
@@ -37,7 +34,7 @@ class L():
         return len(self.items)
 
     def __getitem__(self, arg):
-        return L(self.items[arg])
+        return self.items[arg]
 
     def __setitem__(self, arg, value):
         self.items[arg] = value
@@ -60,21 +57,49 @@ class L():
                 raise ValueError('L contains non numeric values')
         return new_items
 
-    def add_num(self, num:float) -> List[float]:
+    def add_num(self, num:float):
         return L(self._operate_on_items(num=num, op='+'))
 
-    def mult_num(self, num:float) -> List[float]:
+    def mult_num(self, num:float):
         return L(self._operate_on_items(num=num, op='*'))
 
-    def div_num(self, num:float) -> List[float]:
+    def div_num(self, num:float):
         return L(self._operate_on_items(num=num, op='/'))
 
-    def sum(self) -> float:
-        result = 0.0
-        for item in self.items:
+    def _check_type(self, items):
+        for item in items:
             if isinstance(item, int) or isinstance(item, float):
-                result += float(item)
+                continue
             else:
                 raise ValueError('L contains non numeric values')
+
+    def sum(self) -> float:
+        self._check_type(self.items)
+        
+        result = 0.0
+        for item in self.items:
+            result += float(item)
         return result
 
+    def append(self, item:Any):
+        return L([*self.items, item])
+
+    def extend(self, items:List[Any]):
+        return L([*self.items, *items])
+
+    def sort(self, ascending=True):
+        if ascending:
+            return L(sorted(self.items))
+        else:
+            return L(sorted(self.items)[::-1])
+
+    def reverse(self):
+        return L(self.items[::-1])
+
+    def matmul(self, items:List[Any]=[]):
+        result:list = []
+        if len(self.items) != len(items):
+            pass
+            # raise Exception('Vector length not equal')
+        else:
+            pass
